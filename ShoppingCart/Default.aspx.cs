@@ -13,5 +13,11 @@ namespace ShoppingCart
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string cat_id = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
+            Response.Redirect("products.aspx?cat_id=" + cat_id);
+        }
     }
 }
