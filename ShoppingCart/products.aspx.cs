@@ -26,23 +26,28 @@ namespace ShoppingCart
 
                     List<product> products = new List<product>();
                     product product;
+
                     while (reader.Read())
                     {
-                        product = new Product();
-                        product.ID = Convert.ToInt32(reader["product_id"]);
-                        product.Cat_ID = Convert.ToInt32(reader["cat_id"]);
-                        product.Name = reader["name"].ToString();
-                        product.Description = reader["description"].ToString();
-                        product.Price = Convert.ToDecimal(reader["price"]);
+                        product = new product();
+                        product.product_id = Convert.ToInt32(reader["product_id"]);
+                        product.cat_id = Convert.ToInt32(reader["cat_id"]);
+                        product.name = reader["name"].ToString();
+                        product.description = reader["description"].ToString();
+                        product.price = Convert.ToDecimal(reader["price"]);
                         products.Add(product);
                     }
 
                     GridView1.DataSource = products;
                     GridView1.DataBind();
-
                 }
-
             }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string prod_id = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
+            Response.Redirect("shopping.aspx?prod_id="+prod_id);
         }
     }
 }
