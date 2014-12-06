@@ -103,9 +103,12 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style2">
+                <asp:Button ID="btnBackToAddress" runat="server" Text="Back to Address" />
+            </td>
             <td>
-                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                <asp:Button ID="btnPay" runat="server" Text="Pay" OnClick="Button1_Click" Width="100px" />
+            &nbsp;
             </td>
         </tr>
     </table>

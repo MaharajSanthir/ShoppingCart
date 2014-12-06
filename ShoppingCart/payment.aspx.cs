@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ShoppingCart
 {
@@ -103,7 +105,7 @@ namespace ShoppingCart
 
             try
             {
-                if (m.Success)
+                if (m.Success && Convert.ToInt32(expYear) > 14)
                     args.IsValid = true;
                 else
                     args.IsValid = false;
@@ -116,7 +118,35 @@ namespace ShoppingCart
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //Enter codes here to process creditcard payment!
+            bool paymentSuccess = false;
+
+            // Enter codes here to process creditcard payment!
+            
+            // This assignment does not require the credit card payment to be made. 
+            // Therefore, it is assumed that the payment is succeeded. 
+            // The below sets the paymentSuccess value to be true.
+            paymentSuccess = true;
+
+            if (paymentSuccess)
+            {
+                // Saving all the details to database
+                string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
+                using(SqlConnection conn= new SqlConnection(connString))
+                {
+                    SqlCommand com = new SqlCommand();
+
+
+                }
+
+
+
+            }
+            else
+                lblError.Text = "Payment did not go through!";
+
+            
+
+            
         }
 
     }

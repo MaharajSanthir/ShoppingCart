@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cart.aspx" />
+    <Content Include="confirmation.aspx" />
     <Content Include="customer.aspx" />
     <Content Include="login.aspx" />
     <Content Include="payment.aspx" />
@@ -86,6 +87,13 @@
     </Compile>
     <Compile Include="cart.aspx.designer.cs">
       <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="confirmation.aspx.cs">
+      <DependentUpon>confirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="confirmation.aspx.designer.cs">
+      <DependentUpon>confirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="customer.aspx.cs">
       <DependentUpon>customer.aspx</DependentUpon>
