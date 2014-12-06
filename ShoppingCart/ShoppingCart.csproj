@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="cart.aspx" />
     <Content Include="customer.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="products.aspx" />
     <Content Include="shopping.aspx" />
     <Content Include="Site1.Master" />
@@ -97,6 +98,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="products.aspx.cs">
       <DependentUpon>products.aspx</DependentUpon>
