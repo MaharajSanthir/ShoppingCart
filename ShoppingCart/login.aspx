@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">        
         .auto-style14 {
-            width: 287px;
+            width: 374px;
             margin-left:auto;
             margin-right:auto;
-            height: 164px;
+            height: 227px;
         }
         .auto-style15 {
             height: 23px;
@@ -43,7 +43,8 @@
         </tr>
         <tr>
             <td class="auto-style15" colspan="2">
-                &nbsp;</td>
+                <asp:Label ID="lblError" runat="server"></asp:Label>
+            </td>
         </tr>
         <tr>
             <td class="auto-style15" colspan="2">
@@ -52,13 +53,12 @@
         </tr>
         <tr>
             <td class="auto-style15" colspan="2">
-                <asp:Button ID="btnBackToShipping" runat="server" Text="Cancel and Go Back To Shipping Address" Width="100%" />
+                <asp:Button ID="btnBackToShipping" runat="server" Text="Cancel and Go Back To Shipping Address" Width="100%" CausesValidation="False" OnClick="btnBackToShipping_Click" />
             </td>
         </tr>
         <tr>
             <td class="auto-style15" colspan="2">
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            </td>
+                &nbsp;</td>
         </tr>
     </table>
 

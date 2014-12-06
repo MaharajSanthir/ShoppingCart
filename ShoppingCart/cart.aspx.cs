@@ -37,5 +37,10 @@ namespace ShoppingCart
         {
             Response.Redirect("Default.aspx");
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("customer.aspx");
+        }
     }
 }
