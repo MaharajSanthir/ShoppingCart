@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace ShoppingCart
 {
@@ -14,7 +15,13 @@ namespace ShoppingCart
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["CustomerAddresses"]!= null)
+
+            if (Session["Cart"] == null)
+                Response.Redirect("cart.aspx");
+
+            if (Session["CustomerAddresses"] == null)
+                Response.Redirect("customer.aspx");
+            else
             {
                 CustomerAddresses cust = (CustomerAddresses) Session["CustomerAddresses"];
                 lblBillingAddress.Text=     cust.firstname + " "+ cust.lastname + "<br />" +
@@ -23,7 +30,7 @@ namespace ShoppingCart
                                             cust.postalcode + "<br />";
                 lblPhone.Text = cust.phone;
                 lblEmail.Text = cust.email;
-        
+         
             }
         }
 
@@ -119,26 +126,98 @@ namespace ShoppingCart
         protected void Button1_Click(object sender, EventArgs e)
         {
             bool paymentSuccess = false;
+            decimal OrderTotal = 0;
+            string PaymentType = ddlPaymentType.SelectedValue;
+            int customerID = 0;
+            int orderID = 0;
 
-            // Enter codes here to process creditcard payment!
-            
+
             // This assignment does not require the credit card payment to be made. 
             // Therefore, it is assumed that the payment is succeeded. 
-            // The below sets the paymentSuccess value to be true.
-            paymentSuccess = true;
+            // The below code sets the paymentSuccess value to be true.
+            
+            if(Session["Cart"] != null && Session["CustomerAddresses"] != null)
+            {
+                foreach (CartItem cartItem in (List<CartItem>)Session["Cart"])
+                    OrderTotal += cartItem.subtotal;
 
-            if (paymentSuccess)
+                // Enter codes here to process creditcard payment!
+                paymentSuccess = true;
+            }
+            else
+                lblError.Text = "Cart session and the customer detail sessions are not available or expired.";
+
+
+            if (paymentSuccess && OrderTotal > 0)
             {
                 // Saving all the details to database
                 string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
-                using(SqlConnection conn= new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    SqlCommand com = new SqlCommand();
+                    CustomerAddresses custAddr = new CustomerAddresses();
+                    custAddr = (CustomerAddresses)Session["CustomerAddresses"];
 
+                    SqlCommand com = new SqlCommand("InsertCustomerAddresses", conn);
+                    com.CommandType = CommandType.StoredProcedure;
 
+                    com.Parameters.Add(new SqlParameter("@firstname", custAddr.firstname.ToString()));
+                    com.Parameters.Add(new SqlParameter("@lastname", custAddr.lastname.ToString()));
+                    com.Parameters.Add(new SqlParameter("@address", custAddr.address.ToString()));
+                    com.Parameters.Add(new SqlParameter("@city", custAddr.city.ToString()));
+                    com.Parameters.Add(new SqlParameter("@province", custAddr.province.ToString()));
+                    com.Parameters.Add(new SqlParameter("@postalcode", custAddr.postalcode.ToString()));
+                    com.Parameters.Add(new SqlParameter("@phone", custAddr.phone.ToString()));
+                    com.Parameters.Add(new SqlParameter("@email", custAddr.email.ToString()));
+
+                    SqlParameter InsertedCustID = new SqlParameter("@InsertedCustID", SqlDbType.Int);
+                    InsertedCustID.Direction = ParameterDirection.Output;
+                    com.Parameters.Add(InsertedCustID);
+
+                    try
+                    {
+                        conn.Open();
+
+                        com.ExecuteNonQuery();
+                        customerID = Convert.ToInt32(InsertedCustID.Value);
+
+                        if (customerID != 0)
+                        {
+                            SqlCommand InsertOrderSQLCommand = new SqlCommand("InsertOrder", conn);
+                            InsertOrderSQLCommand.CommandType = CommandType.StoredProcedure;
+
+                            InsertOrderSQLCommand.Parameters.Add(new SqlParameter("@customer_id", customerID));
+                            InsertOrderSQLCommand.Parameters.Add(new SqlParameter("@payment_type", PaymentType));
+                            InsertOrderSQLCommand.Parameters.Add(new SqlParameter("@total", OrderTotal));
+
+                            SqlParameter InsertedOrderID = new SqlParameter("@order_id", SqlDbType.Int);
+                            InsertedOrderID.Direction = ParameterDirection.Output;
+                            InsertOrderSQLCommand.Parameters.Add(InsertedOrderID);
+
+                            InsertOrderSQLCommand.ExecuteNonQuery();
+                            orderID = Convert.ToInt32(InsertedOrderID.Value);
+
+                            foreach (CartItem item in (List<CartItem>)Session["Cart"])
+                            {
+                                SqlCommand ComInsertOrderItem = new SqlCommand("InsertOrderItems", conn);
+                                ComInsertOrderItem.CommandType = CommandType.StoredProcedure;
+
+                                ComInsertOrderItem.Parameters.Add(new SqlParameter("@order_id", orderID));
+                                ComInsertOrderItem.Parameters.Add(new SqlParameter("@product_id", item.prod_id));
+                                ComInsertOrderItem.Parameters.Add(new SqlParameter("@quantity", item.quantity));
+
+                                ComInsertOrderItem.ExecuteNonQuery();
+                            }
+                        }
+
+                        conn.Close();
+                        Session["Cart"] = null;
+                        Session["CustomerAddresses"] = null;
+                    }
+                    catch (SqlException ex)
+                    {
+                        lblError.Text = ex.ToString();
+                    }
                 }
-
-
 
             }
             else

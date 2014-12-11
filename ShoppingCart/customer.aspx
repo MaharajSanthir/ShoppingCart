@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
-            width: 500px;
+            width: 700px;
             margin-left:auto;
             margin-right:auto;
 

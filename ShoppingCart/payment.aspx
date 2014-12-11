@@ -2,11 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
-            width: 500px;
+            width: 700px;
             margin-left:auto;
             margin-right:auto;
         }
         .auto-style2 {
+            text-align: left;
+        }
+        .auto-style3 {
             text-align: right;
         }
     </style>
@@ -15,34 +18,34 @@
     
     <table class="auto-style1">
         <tr>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style3">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style2">Billing Address:</td>
+            <td class="auto-style3">Billing Address:</td>
             <td>
                 <asp:Label ID="lblBillingAddress" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Phone:</td>
+            <td class="auto-style3">Phone:</td>
             <td>
                 <asp:Label ID="lblPhone" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Email:</td>
+            <td class="auto-style3">Email:</td>
             <td>
                 <asp:Label ID="lblEmail" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style3">&nbsp;</td>
             <td>
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style2">Payment Type</td>
+            <td class="auto-style3">Payment Type</td>
             <td>
                 <asp:DropDownList ID="ddlPaymentType" runat="server">
                     <asp:ListItem>Visa</asp:ListItem>
@@ -52,21 +55,21 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Card Number:</td>
+            <td class="auto-style3">Card Number:</td>
             <td>
                 <asp:TextBox ID="txtCreditcardNum" runat="server" Height="16px" Width="160px"></asp:TextBox>
                 <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Credit card number is invalid." OnServerValidate="CustomValidator1_ServerValidate">*</asp:CustomValidator>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Name On Card:</td>
+            <td class="auto-style3">Name On Card:</td>
             <td>
                 <asp:TextBox ID="txtNameOnCard" runat="server" Height="16px" Width="160px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNameOnCard" ErrorMessage="Name on card is required!">*</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Expiration Date:</td>
+            <td class="auto-style3">Expiration Date:</td>
             <td>
                 MM:<asp:DropDownList ID="ddlExpMonth" runat="server">
                     <asp:ListItem>01</asp:ListItem>
@@ -88,7 +91,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">Security Code:</td>
+            <td class="auto-style3">Security Code:</td>
             <td>
                 <asp:TextBox ID="txtSecurityCode" runat="server" Width="50px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtSecurityCode" runat="server" ErrorMessage="Security code is required!">*</asp:RequiredFieldValidator>
@@ -96,7 +99,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style3">&nbsp;</td>
             <td>
                 <asp:Label ID="lblError" runat="server"></asp:Label>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
@@ -104,9 +107,9 @@
         </tr>
         <tr>
             <td class="auto-style2">
-                <asp:Button ID="btnBackToAddress" runat="server" Text="Back to Address" />
+                <asp:Button ID="btnBackToAddress" runat="server" Text="Back to Address" CausesValidation="False" style="text-align: left" />
             </td>
-            <td>
+            <td style="text-align: right">
                 <asp:Button ID="btnPay" runat="server" Text="Pay" OnClick="Button1_Click" Width="100px" />
             &nbsp;
             </td>

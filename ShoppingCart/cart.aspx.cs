@@ -11,10 +11,17 @@ namespace ShoppingCart
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Cart"] != null)
+            if (Session["Cart"] == null)
+            {
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+                btnCheckout.Enabled = false;
+                btnContinue.Text = "Go To Shopping";
+            }
+            else
             {
                 List<CartItem> Cart = new List<CartItem>();
-                Cart = (List<CartItem>) Session["Cart"];
+                Cart = (List<CartItem>)Session["Cart"];
 
                 GridView1.DataSource = Cart;
                 GridView1.DataBind();
@@ -31,6 +38,14 @@ namespace ShoppingCart
 
             GridView1.DataSource = Cart;
             GridView1.DataBind();
+
+            if (Cart.Count() == 0)
+            {
+                btnCheckout.Enabled = false;
+                btnContinue.Text = "Go To Shopping";
+                Session["Cart"] = null;
+            }
+
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)
@@ -40,7 +55,8 @@ namespace ShoppingCart
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("customer.aspx");
+            if (Session["Cart"] != null)
+                Response.Redirect("customer.aspx");
         }
     }
 }

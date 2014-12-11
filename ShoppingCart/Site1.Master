@@ -12,15 +12,34 @@
 <body>
     <form id="form1" runat="server">
     <div class="mainContainer" >
-        <h2 style="text-align:center">Santhir Online Grocery Store</h2> 
-        <br />
+        <div class="header"><asp:Image ID="Image1" runat="server" ImageUrl="~/Images/image.jpg" /></div>
+        <h2>Santhir Stores - Buy Tea Leaves Online</h2>
+        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+            <Items>
+                <asp:MenuItem NavigateUrl="categories.aspx" Text="Categories" />
+                <asp:MenuItem NavigateUrl="products.aspx" Text="Products" />
+                <asp:MenuItem NavigateUrl="cart.aspx" Text="Shopping Cart" />
+            </Items>
+        </asp:Menu>
+        <div class="navigation">
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+            <br />
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em" PathSeparator=" : ">
+                <CurrentNodeStyle ForeColor="#333333" />
+                <NodeStyle Font-Bold="True" ForeColor="#284E98" />
+                <PathSeparatorStyle Font-Bold="True" ForeColor="#507CD1" />
+                <RootNodeStyle Font-Bold="True" ForeColor="#507CD1" />
+            </asp:SiteMapPath>
+
+        </div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             
         </asp:ContentPlaceHolder>
+        <br />
     </div>
-        <div class="Footer">
-            Copyright © Maharaj Santhir
-        </div>
+    <div class="Footer">
+        Copyright © Maharaj Santhir
+    </div>
     </form>
 </body>
 </html>
