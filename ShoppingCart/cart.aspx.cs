@@ -50,7 +50,7 @@ namespace ShoppingCart
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("categories.aspx");
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)

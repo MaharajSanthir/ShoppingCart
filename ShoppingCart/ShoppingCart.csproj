@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="App_Code\CartItem.cs" />
     <Compile Include="App_Code\CustomerAddresses.cs" />
+    <Compile Include="App_Code\OrderDetails.cs" />
     <Compile Include="App_Code\product.cs" />
     <Compile Include="cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>

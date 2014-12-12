@@ -16,10 +16,43 @@ namespace ShoppingCart
             string cat_id = Request.QueryString["cat_id"];
             if (cat_id != null)
             {
+                // If category_id is passed in the url
+                string cat_name = "";
                 string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    string sql = "select * from products where cat_id=" + cat_id;
+                    string sql = "select products.product_id,products.cat_id, products.name AS prodName, products.description, products.price,categories.name AS catName from products INNER JOIN categories ON products.cat_id=categories.cat_id where products.cat_id=" + cat_id;
+                    SqlCommand com = new SqlCommand(sql, conn);
+                    conn.Open();
+                    SqlDataReader reader = com.ExecuteReader();
+
+                    List<product> products = new List<product>();
+                    product product;
+
+                    while (reader.Read())
+                    {
+                        product = new product();
+                        product.product_id = Convert.ToInt32(reader["product_id"]);
+                        product.cat_id = Convert.ToInt32(reader["cat_id"]);
+                        product.name = reader["prodName"].ToString();
+                        product.description = reader["description"].ToString();
+                        product.price = Convert.ToDecimal(reader["price"]);
+                        cat_name = reader["catName"].ToString();
+                        products.Add(product);
+                    }
+                    Label1.Text = "Products under category: "+cat_name;
+                    GridView1.DataSource = products;
+                    GridView1.DataBind();
+                }
+            }
+            else
+            {
+                // If no category_id is passed in the url list all products
+                string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    Label1.Text = "All Products";
+                    string sql = "select * from products";
                     SqlCommand com = new SqlCommand(sql, conn);
                     conn.Open();
                     SqlDataReader reader = com.ExecuteReader();

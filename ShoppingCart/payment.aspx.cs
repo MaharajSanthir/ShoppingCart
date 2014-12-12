@@ -212,6 +212,8 @@ namespace ShoppingCart
                         conn.Close();
                         Session["Cart"] = null;
                         Session["CustomerAddresses"] = null;
+
+                        Response.Redirect("confirmation.aspx?orderID=" + orderID);
                     }
                     catch (SqlException ex)
                     {
