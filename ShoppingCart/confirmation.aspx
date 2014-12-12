@@ -13,6 +13,16 @@
         .auto-style4 {
             text-align: center;
         }
+        .auto-style5 {
+            height: 22px;
+        }
+        .auto-style6 {
+            width: 76px;
+        }
+        .auto-style7 {
+            height: 22px;
+            width: 76px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -52,25 +62,25 @@
                         <td class="auto-style4" colspan="2">Customer Details</td>
                     </tr>
                     <tr>
-                        <td>Name:</td>
+                        <td class="auto-style6">Name:</td>
                         <td>
                             <asp:Label ID="lblCustName" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
-                        <td>Address:</td>
-                        <td>
+                        <td class="auto-style7">Address:</td>
+                        <td class="auto-style5">
                             <asp:Label ID="lblCustAddr" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
-                        <td>Phone:</td>
+                        <td class="auto-style6">Phone:</td>
                         <td>
                             <asp:Label ID="lblCustPhone" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
-                        <td>Email:</td>
+                        <td class="auto-style6">Email:</td>
                         <td>
                             <asp:Label ID="lblCustEmail" runat="server"></asp:Label>
                         </td>
