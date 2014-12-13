@@ -1,6 +1,2 @@
-Course: INT422
-Prof: Tom Tang
-Assignment: Shopping Cart 
-
-Student Name: Maharajah Santhirasekaram
-Student ID: 067-745-034
+This assignment is completed for an ASP.NET course at Seneca College.
+It is an individual person assignment and the primary focus of this assignment is to have database connections to display and store data by using ADO.NET with stored procedures. 
