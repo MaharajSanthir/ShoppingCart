@@ -6,38 +6,32 @@
             margin-left:auto;
             margin-right:auto;
         }
-        .auto-style2 {
-            height: 23px;
-        }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
-    <table class="auto-style1">
-        <tr>
-            <td colspan="2">    <asp:GridView ID="GridView1" EmptyDataText="Empty" runat="server" CellPadding="2" DataKeyNames="prod_id" ForeColor="Black" HorizontalAlign="Center" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" ShowHeaderWhenEmpty="True" Width="100%" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px">
-        <AlternatingRowStyle BackColor="PaleGoldenrod" />
+    <asp:GridView ID="GridView1" EmptyDataText="Empty" runat="server" CellPadding="4" DataKeyNames="prod_id" ForeColor="Black" HorizontalAlign="Center" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" ShowHeaderWhenEmpty="True" Width="100%" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" GridLines="Vertical" style="text-align: left">
+        <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Delete" />
             <asp:BoundField DataField="prod_name" HeaderText="Product Name" />
-            <asp:BoundField DataField="price" HeaderText="Price" />
+            <asp:BoundField DataField="price" HeaderText="Price" DataFormatString="{0:C}" />
             <asp:BoundField DataField="quantity" HeaderText="Quantity" />
-            <asp:BoundField DataField="subtotal" HeaderText="Subtotal" />
+            <asp:BoundField DataField="subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
         </Columns>
                 <EmptyDataTemplate>
                     Cart is empty
                 </EmptyDataTemplate>
-        <FooterStyle BackColor="Tan" />
-        <HeaderStyle BackColor="Tan" Font-Bold="True" />
-        <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
-        <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
-        <SortedAscendingCellStyle BackColor="#FAFAE7" />
-        <SortedAscendingHeaderStyle BackColor="#DAC09E" />
-        <SortedDescendingCellStyle BackColor="#E1DB9C" />
-        <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+        <FooterStyle BackColor="#CCCC99" />
+        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                <RowStyle BackColor="#F7F7DE" />
+        <SelectedRowStyle BackColor="#CE5D5A" ForeColor="White" Font-Bold="True" />
+        <SortedAscendingCellStyle BackColor="#FBFBF2" />
+        <SortedAscendingHeaderStyle BackColor="#848384" />
+        <SortedDescendingCellStyle BackColor="#EAEAD3" />
+        <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
-            </td>
-        </tr>
+<table style="width:100%">
         <tr>
             <td>    
     <asp:Button ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" />
@@ -46,5 +40,4 @@
             </td>
         </tr>
     </table>
-    <br />
     </asp:Content>

@@ -1,56 +1,53 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="shopping.aspx.cs" Inherits="ShoppingCart.shopping" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+        .auto-style16 {
+            text-align: center;
+            background-color: #F7F7DE;
         }
-        .auto-style2 {
-            height: 23px;
-            width: 376px;
+        .auto-style17 {
+            text-align: center;
+            color: #FFFFFF;
+            background-color: #6B696B;
+            height: 22px;
         }
-        .auto-style3 {
-            height: 23px;
-            width: 228px;
+        .auto-style19 {
+            text-align: center;
+            color: #FFFFFF;
+            width: 111px;
+            background-color: #6B696B;
+            height: 22px;
         }
-        .auto-style4 {
-            width: 228px;
+        .auto-style20 {
+            width: 111px;
+            background-color: #F7F7DE;
         }
-        .auto-style5 {
-            height: 23px;
-            width: 234px;
-        }
-        .auto-style6 {
-            width: 234px;
-        }
-        .auto-style7 {
-            height: 23px;
-            width: 124px;
-        }
-        .auto-style8 {
-            width: 124px;
-        }
-        .auto-style9 {
-            width: 376px;
+        .auto-style21 {
+            font-weight: bold;
+            width: 176px;
+            height: 24px;
+            background-color: #F7F7DE;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:HiddenField ID="HiddenFieldProd_ID" runat="server" />
-    <table class="auto-style1" border="1">
+    <table style="width:100%; border-color:#DEDFDE; border-width:1px;" >
         <tr>
-            <td class="auto-style3">Product Name</td>
-            <td class="auto-style5">Price</td>
-            <td class="auto-style7">Quantity</td>
-            <td class="auto-style2">Sub Total</td>
+            <td class="auto-style17">Product Name</td>
+            <td class="auto-style17">Price</td>
+            <td class="auto-style19">Quantity</td>
+            <td class="auto-style17" >Sub Total</td>
         </tr>
         <tr>
-            <td class="auto-style4">
+            <td class="auto-style21">
                 <asp:Label ID="lblProdName" runat="server"></asp:Label>
             </td>
-            <td class="auto-style6">
-                <asp:Label ID="lblPrice" runat="server"></asp:Label>
+            <td class="auto-style21" >
+                $<asp:Label ID="lblPrice" runat="server"></asp:Label>
             </td>
-            <td class="auto-style8">
+            <td class="auto-style20" >
                 <asp:DropDownList ID="ddlQuantity" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlQuantity_SelectedIndexChanged">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
@@ -64,19 +61,16 @@
                     <asp:ListItem>10</asp:ListItem>
                 </asp:DropDownList>
             </td>
-            <td class="auto-style9">
-                <asp:Label ID="lblSubTotal" runat="server"></asp:Label>
+            <td class="auto-style21" >
+                $<asp:Label ID="lblSubTotal" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td class="auto-style4">
-                &nbsp;</td>
-            <td class="auto-style6">
-                &nbsp;</td>
-            <td class="auto-style8">
-                &nbsp;</td>
-            <td class="auto-style9">
-                <asp:Button ID="btnGoToCart" runat="server" OnClick="btnGoToCart_Click" Text="Go to Cart" />
+            <td  colspan="3">
+    <asp:HiddenField ID="HiddenFieldProd_ID" runat="server" />
+            </td>
+            <td>
+                <asp:Button ID="btnGoToCart" runat="server" OnClick="btnGoToCart_Click" Text="Add to Cart" />
 &nbsp;
                 <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" />
             </td>

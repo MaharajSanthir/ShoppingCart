@@ -11,6 +11,7 @@
         }
         .auto-style3 {
             text-align: right;
+            vertical-align:top;
         }
     </style>
 </asp:Content>
@@ -107,7 +108,7 @@
         </tr>
         <tr>
             <td class="auto-style2">
-                <asp:Button ID="btnBackToAddress" runat="server" Text="Back to Address" CausesValidation="False" style="text-align: left" />
+                <asp:Button ID="btnBackToAddress" runat="server" Text="Back to Address" CausesValidation="False" style="text-align: left" OnClick="btnBackToAddress_Click" />
             </td>
             <td style="text-align: right">
                 <asp:Button ID="btnPay" runat="server" Text="Pay" OnClick="Button1_Click" Width="100px" />

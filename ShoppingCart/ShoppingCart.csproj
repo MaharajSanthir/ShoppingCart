@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -62,7 +63,6 @@
     <Content Include="customer.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Images\image.jpg" />
-    <Content Include="login.aspx" />
     <Content Include="payment.aspx" />
     <Content Include="products.aspx" />
     <Content Include="shopping.aspx" />
@@ -83,7 +83,6 @@
   <ItemGroup>
     <Compile Include="App_Code\CartItem.cs" />
     <Compile Include="App_Code\CustomerAddresses.cs" />
-    <Compile Include="App_Code\OrderDetails.cs" />
     <Compile Include="App_Code\product.cs" />
     <Compile Include="cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
@@ -119,13 +118,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="payment.aspx.cs">
       <DependentUpon>payment.aspx</DependentUpon>

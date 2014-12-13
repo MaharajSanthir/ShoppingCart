@@ -40,7 +40,6 @@ namespace ShoppingCart
                         cat_name = reader["catName"].ToString();
                         products.Add(product);
                     }
-                    Label1.Text = "Products under category: "+cat_name;
                     GridView1.DataSource = products;
                     GridView1.DataBind();
                 }
@@ -51,7 +50,6 @@ namespace ShoppingCart
                 string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    Label1.Text = "All Products";
                     string sql = "select * from products";
                     SqlCommand com = new SqlCommand(sql, conn);
                     conn.Open();

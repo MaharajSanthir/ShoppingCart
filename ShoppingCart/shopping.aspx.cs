@@ -13,10 +13,10 @@ namespace ShoppingCart
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string prod_id = Request.QueryString["prod_id"];
 
-            if(!IsPostBack)
+            if (prod_id != null)
             {
-                string prod_id = Request.QueryString["prod_id"];
                 HiddenFieldProd_ID.Value = prod_id;
                 string connString = ConfigurationManager.ConnectionStrings["ShoppingCartConnectionString"].ConnectionString;
                 using(SqlConnection conn = new SqlConnection(connString))
@@ -32,8 +32,8 @@ namespace ShoppingCart
                     int quantity = Convert.ToInt32(ddlQuantity.SelectedValue);
 
                     lblProdName.Text = reader["name"].ToString();
-                    lblPrice.Text = price.ToString();
-                    lblSubTotal.Text = (quantity * price).ToString();
+                    lblPrice.Text = decimal.Round(price, 2).ToString();
+                    lblSubTotal.Text = decimal.Round((quantity * price),2).ToString();
                 }
 
             }

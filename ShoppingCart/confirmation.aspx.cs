@@ -14,6 +14,7 @@ namespace ShoppingCart
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LabelError.Text = "Products";
             string orderID = Request.QueryString["orderID"];
             if(orderID != null)
             {
@@ -30,22 +31,6 @@ namespace ShoppingCart
                         SqlDataReader reader = com.ExecuteReader(); 
                         reader.Read();
 
-                        //OrderDetails OrderDetails = new OrderDetails();
-                        //OrderDetails.CustAddress = new CustomerAddresses();
-                        //OrderDetails.CustAddress.firstname = reader["FirstName"].ToString();
-                        //OrderDetails.CustAddress.lastname = reader["LastName"].ToString();
-                        //OrderDetails.CustAddress.address = reader["CustAddress"].ToString();
-                        //OrderDetails.CustAddress.city = reader["City"].ToString();
-                        //OrderDetails.CustAddress.province = reader["Province"].ToString();
-                        //OrderDetails.CustAddress.postalcode = reader["PostalCode"].ToString();
-                        //OrderDetails.CustAddress.phone = reader["CustPhone"].ToString();
-                        //OrderDetails.CustAddress.email = reader["CustEmail"].ToString();
-                        //OrderDetails.OrderID = Convert.ToInt32(orderID);
-                        //OrderDetails.PaymentType = reader["PaymentType"].ToString();
-                        //OrderDetails.OrderDate = Convert.ToDateTime(reader["OrderDate"].ToString());
-                        //OrderDetails.OrderStatus = reader["OrderStatus"].ToString();
-                        //OrderDetails.OrderTotal = Convert.ToDecimal(reader["OrderTotal"].ToString());
-
                         lblOrderID.Text = orderID.ToString(); 
                         lblOrderDate.Text = reader["OrderDate"].ToString();
                         lblOrderStatus.Text = reader["OrderStatus"].ToString();
@@ -56,10 +41,8 @@ namespace ShoppingCart
                                            reader["PostalCode"].ToString() + "<br />";
                         lblCustPhone.Text = reader["CustPhone"].ToString();
                         lblCustEmail.Text = reader["CustEmail"].ToString();
-                        //OrderDetails.PaymentType = reader["PaymentType"].ToString();
-                        //OrderDetails.OrderDate = Convert.ToDateTime(reader["OrderDate"].ToString());
-                        //OrderDetails.OrderStatus = reader["OrderStatus"].ToString();
-                        //OrderDetails.OrderTotal = Convert.ToDecimal(reader["OrderTotal"].ToString());
+                        lblPaymentType.Text = reader["PaymentType"].ToString();
+                        lblTotal.Text = (Convert.ToDecimal(reader["OrderTotal"])).ToString("C");
 
                         conn.Close();
 
@@ -86,6 +69,8 @@ namespace ShoppingCart
 
                         GridView1.DataSource = OrderItemList;
                         GridView1.DataBind();
+
+                        
                     }
                     catch (SqlException ex)
                     {

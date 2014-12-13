@@ -8,38 +8,99 @@
     <link rel="stylesheet" type="text/css" href="Style/StyleMain.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 706px;
+            height: 240px;
+        }
+        .auto-style4 {
+            text-align: center;
+            height: 24px;
+            background-color: #FFFBB8;
+        }
+        .auto-style7 {
+            height: 148px;
+        }
+        .auto-style9 {
+            text-align: left;
+            font-weight: bold;
+            height: 18px;
+            background-color: #9FE38A;
+        }
+        .auto-style11 {
+            text-align: left;
+            font-weight: bold;
+            height: 44px;
+            background-color: #FFFBB8;
+        }
+        .auto-style12 {
+            background-color: #FFFBB8;
+        }
+        .auto-style13 {
+            color: #000000;
+        }
+        .auto-style15 {
+            text-align: left;
+            font-weight: bold;
+            height: 18px;
+            background-color: #9FE38A;
+        }
+        .auto-style16 {
+            text-align: center;
+            font-weight: bold;
+            height: 24px;
+            background-color: #9FE38A;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="mainContainer" >
-        <div class="header"><asp:Image ID="Image1" runat="server" ImageUrl="~/Images/image.jpg" /></div>
-        <h2>Santhir Stores - Buy Tea Leaves Online</h2>
-        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
-            <Items>
-                <asp:MenuItem NavigateUrl="categories.aspx" Text="Categories" />
-                <asp:MenuItem NavigateUrl="products.aspx" Text="Products" />
-                <asp:MenuItem NavigateUrl="cart.aspx" Text="Shopping Cart" />
-            </Items>
-        </asp:Menu>
-        <div class="navigation">
-            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-            <br />
-            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em" PathSeparator=" : ">
-                <CurrentNodeStyle ForeColor="#333333" />
-                <NodeStyle Font-Bold="True" ForeColor="#284E98" />
-                <PathSeparatorStyle Font-Bold="True" ForeColor="#507CD1" />
-                <RootNodeStyle Font-Bold="True" ForeColor="#507CD1" />
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style7"><asp:Image ID="Image1" runat="server" ImageUrl="~/Images/image.jpg" /></td>
+            </tr>
+            <tr>
+                <td class="auto-style4"><strong><span class="auto-style12">Santhir Stores - Buy Tea Leaves Online</span></strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style16">
+                    <asp:Menu ID="Menu1"  Orientation="Horizontal" CssClass="TopNav" runat="server">
+                        <staticmenuitemstyle horizontalpadding="80" verticalpadding="2" forecolor="Black"/>
+                        <statichoverstyle ForeColor="Red" />
+                        <Items>
+                            <asp:MenuItem NavigateUrl="categories.aspx" Text="Categories" />
+                            <asp:MenuItem NavigateUrl="products.aspx" Text="All Products" />
+                            <asp:MenuItem NavigateUrl="cart.aspx" Text="Cart" />
+                        </Items>
+                    </asp:Menu>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style11">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Size="X-Small" style="font-size: medium">
             </asp:SiteMapPath>
 
-        </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style9">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             
         </asp:ContentPlaceHolder>
-        <br />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style15">
+                    &nbsp;</td>
+            </tr>
+        </table>
     </div>
     <div class="Footer">
         Copyright © Maharaj Santhir
     </div>
+
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
     </form>
 </body>
 </html>

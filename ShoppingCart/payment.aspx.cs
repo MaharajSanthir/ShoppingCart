@@ -230,5 +230,10 @@ namespace ShoppingCart
             
         }
 
+        protected void btnBackToAddress_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("customer.aspx");
+        }
+
     }
 }
